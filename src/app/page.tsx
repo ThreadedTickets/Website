@@ -1,8 +1,10 @@
 "use client";
 import Button from "@/components/buttons/Default";
 import FancyButton from "@/components/buttons/Fancy";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   return (
     <div className="bg-background h-screen text-text">
       <div className="flex flex-col justify-center h-full items-center gap-4">
@@ -28,10 +30,8 @@ export default function Home() {
               }
             />
             <Button
-              text="Documentation"
-              onClick={() =>
-                window.open("https://discord.gg/9jFqS5H43Q", "_blank")
-              }
+              text="Placeholders"
+              onClick={() => router.push("/placeholders")}
             />
           </div>
         </div>
