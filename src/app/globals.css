@@ -1,0 +1,106 @@
+@import "tailwindcss";
+
+@theme {
+  --color-text: #e7e9fd;
+  --color-text-inverted: #181602;
+  --color-background: #01020d;
+  --color-midground: #0a0b1c;
+  --color-foreground: #18192b;
+  --color-foreground-further: #1e1f30;
+  --color-primary: #8991f4;
+  --color-secondary: #630fa1;
+  --color-accent: #d22ceb;
+}
+
+/* Discord-like scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2e3338;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #202225;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1a1c1f;
+}
+
+/* Discord mentions */
+.mention {
+  @apply px-1 rounded mx-0.5;
+  background-color: rgba(88, 101, 242, 0.3);
+  color: rgb(88, 101, 242);
+}
+
+.mention:hover {
+  background-color: rgba(88, 101, 242, 0.4);
+  color: rgb(71, 82, 196);
+}
+
+/* Discord-like background colors */
+.bg-discord-dark {
+  background-color: #36393f;
+}
+
+.bg-discord-darker {
+  background-color: #2f3136;
+}
+
+.bg-discord-input {
+  background-color: #40444b;
+}
+
+/* Message bubble styling */
+.message-content {
+  @apply text-gray-100;
+  line-height: 1.375;
+}
+
+.message-content a {
+  @apply text-blue-400 hover:underline;
+}
+
+input,
+textarea {
+  outline: none;
+}
+
+/* Reset: no border by default */
+.ticket-permissions > div {
+  border-right: none;
+}
+
+/* md: 2 columns */
+@media (min-width: 768px) {
+  .ticket-permissions {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ticket-permissions > div {
+    border-right: 1px solid #4b5563;
+  }
+
+  .ticket-permissions > div:nth-child(2n) {
+    border-right: none;
+  }
+}
+
+@keyframes slide-shine {
+  0% {
+    transform: translateX(-200%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-slide-shine {
+  animation: slide-shine 2.75s ease-in-out infinite;
+}
