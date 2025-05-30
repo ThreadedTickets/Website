@@ -27,7 +27,12 @@ export default function Home() {
                 window.open("https://discord.gg/9jFqS5H43Q", "_blank")
               }
             />
-            <Button text="Documentation" />
+            <Button
+              text="Documentation"
+              onClick={() =>
+                window.open("https://discord.gg/9jFqS5H43Q", "_blank")
+              }
+            />
           </div>
         </div>
       </div>
