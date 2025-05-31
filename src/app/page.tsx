@@ -41,6 +41,9 @@ export default function Home() {
           <a href="/terms" className="hover:text-text/70">
             <p>Terms</p>
           </a>
+          <a href="/status" className="hover:text-text/70">
+            <p>Status</p>
+          </a>
           <a href="/privacy" className="hover:text-text/70">
             <p>Privacy</p>
           </a>
