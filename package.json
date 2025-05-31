@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start -p 10033",
-    "lint": "next lint"
+    "lint": "next lint",
+    "go": "npm run build && npm run start"
   },
   "dependencies": {
     "@floating-ui/react-dom": "^2.1.2",
