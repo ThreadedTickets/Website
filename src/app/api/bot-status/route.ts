@@ -18,14 +18,15 @@ type MachineHealth = {
 const machineHealthCache: Record<string, MachineHealth> = {};
 
 // 🧠 Define your cluster machine IPs here
-const MACHINE_IPS = [
-  "localhost:3002",
-  // Add more as needed
-];
+const MACHINE_IPS = process.env.MACHINES?.split(",") ?? [];
 
-const MACHINE_NAMES = {
-  "localhost:3002": "Threaded1",
-};
+const MACHINE_NAMES: Record<string, string> = (() => {
+  try {
+    return JSON.parse(process.env.MACHINE_NAMES || "{}");
+  } catch {
+    return {};
+  }
+})();
 
 // Polling interval (ms)
 const POLL_INTERVAL = 60000;
