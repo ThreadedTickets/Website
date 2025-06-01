@@ -189,6 +189,7 @@ export default function MentionTextarea({
 
   // Detect mention triggers (#, @, {) and set up suggestion dropdown
   const checkForMentionTrigger = (text: string, cursorPos: number) => {
+    if (!text) text = "";
     const textBeforeCursor = text.substring(0, cursorPos);
     const lastHash = textBeforeCursor.lastIndexOf("#");
     const lastAt = textBeforeCursor.lastIndexOf("@");
