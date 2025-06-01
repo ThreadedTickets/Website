@@ -53,7 +53,15 @@ export default function MessageEditor({ id }: { id: string }) {
       setRoles(data.data.metadata.roles);
       setChannels(data.data.metadata.channels);
       if (data.data.existingMessage) {
-        setMessage(data.data.existingMessage);
+        const message = { ...data.data.existingMessage };
+
+        // Ensure `embeds` is an array and has at least X elements
+        const X = 0; // or any other index you need
+        if (Array.isArray(message.embeds) && message.embeds[X]) {
+          message.embeds[X].fields = message.embeds[X].fields ?? [];
+        }
+
+        setMessage(message);
       }
     } else {
       setExportError(

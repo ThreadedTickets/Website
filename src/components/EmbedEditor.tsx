@@ -238,7 +238,7 @@ export default function EmbedEditor({
 
             {embed.fields &&
               embed.fields?.length > 0 &&
-              embed.fields.map((field: any, fieldIndex: number) => (
+              embed.fields?.map((field: any, fieldIndex: number) => (
                 <div
                   key={fieldIndex}
                   className="p-3 bg-foreground-further rounded"
