@@ -153,7 +153,7 @@ export default function MentionTextarea({
 
     // Get cursor position
     const cursorPos = textarea.selectionStart;
-    const textBeforeCursor = value
+    const textBeforeCursor = (value ?? "")
       .substring(0, cursorPos)
       .replace(/ /g, "\u00a0") // Use non-breaking space
       .replace(/\n/g, "<br/>"); // Preserve line breaks
@@ -269,8 +269,10 @@ export default function MentionTextarea({
     if (index < 0 || index >= suggestions.length) return;
 
     const selected = suggestions[index];
-    const textBefore = value.substring(0, triggerPosition);
-    const textAfter = value.substring(triggerPosition + 1 + searchTerm.length);
+    const textBefore = (value ?? "").substring(0, triggerPosition);
+    const textAfter = (value ?? "").substring(
+      triggerPosition + 1 + searchTerm.length
+    );
 
     let mentionText = "";
     if (selected.type === "channel") {
