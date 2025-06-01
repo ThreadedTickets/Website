@@ -197,7 +197,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Name</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("author", "name", e)}
-                  value={embed.author.name}
+                  value={embed.author?.name}
                   maxLength={100}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -206,7 +206,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">URL</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("author", "url", e)}
-                  value={embed.author.url}
+                  value={embed.author?.url}
                   maxLength={1000}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -215,7 +215,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Icon URL</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("author", "icon_url", e)}
-                  value={embed.author.icon_url}
+                  value={embed.author?.icon_url}
                   maxLength={1000}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -229,59 +229,61 @@ export default function EmbedEditor({
               <h5 className="font-medium">Fields</h5>
               <button
                 onClick={addField}
-                disabled={embed.fields.length >= 25}
+                disabled={embed.fields?.length >= 25}
                 className="bg-primary/80 hover:bg-primary px-5 py-1 cursor-pointer rounded-2xl text-text-inverted disabled:opacity-50"
               >
                 Add Field
               </button>
             </div>
 
-            {embed.fields?.map((field: any, fieldIndex: number) => (
-              <div
-                key={fieldIndex}
-                className="p-3 bg-foreground-further rounded"
-              >
-                <div className="flex justify-between">
-                  <p className="text-text truncate font-bold">
-                    Field #{fieldIndex + 1}{" "}
-                    <span className="text-text/60">{field.name}</span>
-                  </p>
-                  <FaTrash
-                    onClick={() => removeField(fieldIndex)}
-                    className="text-text hover:text-primary cursor-pointer text-sm"
-                  />
-                </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
-                  <div>
-                    <label className="block mb-1 text-sm">Name</label>
-                    <MentionTextarea
-                      onChange={(e) => updateField(fieldIndex, "name", e)}
-                      value={field.name}
-                      maxLength={100}
-                      style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
+            {embed.fields &&
+              embed.fields.length &&
+              embed.fields.map((field: any, fieldIndex: number) => (
+                <div
+                  key={fieldIndex}
+                  className="p-3 bg-foreground-further rounded"
+                >
+                  <div className="flex justify-between">
+                    <p className="text-text truncate font-bold">
+                      Field #{fieldIndex + 1}{" "}
+                      <span className="text-text/60">{field.name}</span>
+                    </p>
+                    <FaTrash
+                      onClick={() => removeField(fieldIndex)}
+                      className="text-text hover:text-primary cursor-pointer text-sm"
                     />
                   </div>
-                  <div>
-                    <label className="block mb-1 text-sm">Value</label>
-                    <MentionTextarea
-                      onChange={(e) => updateField(fieldIndex, "value", e)}
-                      value={field.value}
-                      channels={channels}
-                      roles={roles}
-                      maxLength={1000}
-                      style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors h-10 min-h-10 resize-none"
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-2">
+                    <div>
+                      <label className="block mb-1 text-sm">Name</label>
+                      <MentionTextarea
+                        onChange={(e) => updateField(fieldIndex, "name", e)}
+                        value={field.name}
+                        maxLength={100}
+                        style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
+                      />
+                    </div>
+                    <div>
+                      <label className="block mb-1 text-sm">Value</label>
+                      <MentionTextarea
+                        onChange={(e) => updateField(fieldIndex, "value", e)}
+                        value={field.value}
+                        channels={channels}
+                        roles={roles}
+                        maxLength={1000}
+                        style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors h-10 min-h-10 resize-none"
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-4">
+                    <p>Inline</p>
+                    <CheckboxInput
+                      checked={field.inline}
+                      onChange={(e) => updateField(fieldIndex, "inline", e)}
                     />
                   </div>
                 </div>
-                <div className="flex gap-4">
-                  <p>Inline</p>
-                  <CheckboxInput
-                    checked={field.inline}
-                    onChange={(e) => updateField(fieldIndex, "inline", e)}
-                  />
-                </div>
-              </div>
-            ))}
+              ))}
           </div>
 
           {/* Footer & Images */}
@@ -292,7 +294,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Text</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("footer", "text", e)}
-                  value={embed.footer.text}
+                  value={embed.footer?.text}
                   maxLength={100}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -301,7 +303,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Icon URL</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("footer", "icon_url", e)}
-                  value={embed.footer.icon_url}
+                  value={embed.footer?.icon_url}
                   maxLength={1000}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -313,7 +315,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Thumbnail URL</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("thumbnail", "url", e)}
-                  value={embed.thumbnail.url}
+                  value={embed.thumbnail?.url}
                   maxLength={1000}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
@@ -322,7 +324,7 @@ export default function EmbedEditor({
                 <label className="block mb-1 text-sm">Image URL</label>
                 <MentionTextarea
                   onChange={(e) => handleNestedChange("image", "url", e)}
-                  value={embed.image.url}
+                  value={embed.image?.url}
                   maxLength={1000}
                   style="w-full py-1 px-2 bg-background text-white rounded border border-transparent focus:border-accent/30 transition-colors max-h-10 resize-none"
                 />
