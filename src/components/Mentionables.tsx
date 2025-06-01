@@ -8,12 +8,7 @@ import {
   useLayoutEffect,
   useMemo,
 } from "react";
-import {
-  useFloating,
-  offset,
-  shift,
-  autoUpdate,
-} from "@floating-ui/react-dom";
+import { useFloating, offset, shift, autoUpdate } from "@floating-ui/react-dom";
 
 type MentionableItem = {
   id: string;
@@ -55,7 +50,7 @@ const placeholders = [
 ];
 
 export default function MentionTextarea({
-  value,
+  value = "",
   onChange,
   placeholder,
   channels = [],
