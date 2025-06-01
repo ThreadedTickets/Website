@@ -236,7 +236,7 @@ export default function EmbedEditor({
               </button>
             </div>
 
-            {embed.fields.map((field: any, fieldIndex: number) => (
+            {embed.fields?.map((field: any, fieldIndex: number) => (
               <div
                 key={fieldIndex}
                 className="p-3 bg-foreground-further rounded"
