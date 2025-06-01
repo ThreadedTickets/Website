@@ -237,7 +237,7 @@ export default function EmbedEditor({
             </div>
 
             {embed.fields &&
-              embed.fields.length &&
+              embed.fields?.length > 0 &&
               embed.fields.map((field: any, fieldIndex: number) => (
                 <div
                   key={fieldIndex}
