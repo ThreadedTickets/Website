@@ -53,6 +53,7 @@ type TicketTrigger = {
   categoriesAvailableToMoveTicketsTo: string[];
   requiredRoles: string[];
   bannedRoles: string[];
+  dmOnClose: string | null;
 };
 
 const generateBlankQuestion = () => {
@@ -134,6 +135,7 @@ export default function TicketTriggerPage() {
           allowAutoresponders: true,
           syncChannelPermissionsWhenMoved: false,
           categoriesAvailableToMoveTicketsTo: [],
+          dmOnClose: null,
         });
       }
     } else {
@@ -217,7 +219,7 @@ export default function TicketTriggerPage() {
           className="bg-midground rounded-lg p-4 overflow-visible"
         >
           <p className="font-extrabold text-3xl">General Settings</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 my-2 gap-4">
             <div className="bg-foreground z-0 relative grid grid-rows-2 grid-cols-1 min-h-40 rounded-lg drop-shadow-2xl drop-shadow-midground/30 p-4">
               <div className="grow">
                 <p className="text-2xl font-bold">Trigger Label</p>
@@ -245,6 +247,22 @@ export default function TicketTriggerPage() {
                 options={messages}
                 value={trigger.message || undefined}
                 onChange={(e) => setTrigger({ ...trigger, message: e })}
+                className="grow"
+                required
+              />
+            </div>
+            <div className="bg-foreground z-0 relative grid grid-rows-2 grid-cols-1 min-h-40 rounded-lg drop-shadow-2xl drop-shadow-midground/30 p-4">
+              <div className="grow">
+                <p className="text-2xl font-bold">DM Message</p>
+                <p className="opacity-70">
+                  This message will be DMed to a user when their ticket is
+                  closed. (No DM if not set)
+                </p>
+              </div>
+              <SelectInput
+                options={messages}
+                value={trigger.dmOnClose || undefined}
+                onChange={(e) => setTrigger({ ...trigger, dmOnClose: e })}
                 className="grow"
                 required
               />
