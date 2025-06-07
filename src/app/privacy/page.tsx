@@ -52,6 +52,7 @@ export default function PrivacyPolicyPage() {
           <li>Managing ticket systems</li>
           <li>Handling user-submitted applications</li>
           <li>Automating server-specific responses</li>
+          <li>Moderating the bot</li>
         </ul>
         <p className="mt-2">
           We do not sell, share, or monetize your data in any way.
